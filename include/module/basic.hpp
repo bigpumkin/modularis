@@ -41,7 +41,7 @@ class Basic
 	
 	void set_background(float pos_x, float pos_y, float size_x, float size_y, sf::Color background_color, sf::Color outline_color);
 	
-	void draw(float pos_x, float pos_y, sf::Window& window);
+	void draw(float pos_x, float pos_y, sf::RenderWindow& window);
 
 	sf::RectangleShape get_background();
 };

@@ -27,7 +27,7 @@ void Basic::set_display_name(float pos_x, float pos_y, string name, int characte
 
 sf::Text Basic::get_diplay_name() { return display_name; }
 
-void Basic::draw(float pos_x, float pos_y, sf::Window& window)
+void Basic::draw(float pos_x, float pos_y, sf::RenderWindow& window)
 {
 	set_background(pos_x, pos_y, size_x, size_y, background_color,outline_color);
 	
