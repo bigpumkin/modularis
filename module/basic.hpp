@@ -9,8 +9,8 @@ using namespace std;
 class Basic
 {
   private:
-     void draw_display_name(float pos_x, float pos_y);
-     void draw_background(float pos_x, float pos_y);
+    void draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window);
+    void draw_background(float pos_x, float pos_y, sf::RenderWindow &window);
        
   public:
 	float size_x;
@@ -21,21 +21,14 @@ class Basic
 	size_t amount_out;	
 	size_t amount_mod;
 
-	//Название модуля
-	float pos_x_name;
-	float pos_y_name;
-	string name;
+	// Название модуля
 	sf::Font font;
-	sf::Color display_name_color;
-	int character_size_name;
-	 sf::Text display_name; //используется функции set display_name
+	sf::Text display_name; // используется в функции set_display_name
 
-	//Основное тело(фон)
-	sf::Color background_color;
-	sf::Color outline_color;
+	// Основное тело (фон)
 	sf::RectangleShape background;
 
-	//Джеки и прочие надписи
+	// Джеки и прочие надписи
 	sf::Color text_color;
 	sf::Color jack_color;
 	

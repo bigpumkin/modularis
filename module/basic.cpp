@@ -1,4 +1,5 @@
 #include "basic.hpp"
+#include "assets/fonts/Roboto-Regular.hpp"
 
 void Basic::set_background(float size_x, float size_y, sf::Color background_color, sf::Color outline_color)
 {
@@ -11,40 +12,38 @@ void Basic::set_background(float size_x, float size_y, sf::Color background_colo
 	background = rectangle;
 }
 
-void Basic::draw_background(float pos_x, float pos_y)
+void Basic::draw_background(float pos_x, float pos_y, sf::RenderWindow &window)
 {
-	sf::RectangleShape rectangle;
-	rectangle.setPosition(pos_x, pos_y);
-	
-	background = rectangle;
+	this->background.setPosition(pos_x, pos_y);
+
+	window.draw(this->background);
 }
 
-void Basic::set_display_name( string name, int character_size_name, sf::Color display_name_color)
+void Basic::set_display_name(string name, int character_size_name, sf::Color display_name_color)
 {
-	font.loadFromFile("/system/fonts/Roboto-Regular.ttf");
+	font.loadFromMemory(&assets_fonts_Roboto_Regular_ttf, assets_fonts_Roboto_Regular_ttf_len);
 	sf::Text text;
 	text.setString(name);
 	text.setFont(font);
 	text.setCharacterSize(character_size_name);
-	text.setColor(display_name_color);
+	text.setFillColor(display_name_color);
 
 	display_name = text;
 }
 
-void Basic::draw_display_name(float pos_x, float pos_y)
+void Basic::draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window)
 {
-	sf::Text text;
-	text.setPosition(pos_x, pos_y);
-	
-	display_name = text;
+	this->display_name.setPosition(pos_x, pos_y - 30.f);
+
+	window.draw(this->display_name);
 }
 
 sf::Text Basic::get_diplay_name() { return display_name; }
 
 void Basic::draw(float pos_x, float pos_y, sf::RenderWindow &window)
 {
-	draw_background(pos_x, pos_y);
-     draw_display_name(pos_x, pos_y);
+	draw_background(pos_x, pos_y, window);
+    draw_display_name(pos_x, pos_y, window);
 }
 
 sf::RectangleShape Basic::get_background() { return background; }
