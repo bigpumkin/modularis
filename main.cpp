@@ -8,13 +8,12 @@
 #include "module/osc.hpp"
 
 using namespace std;
-using namespace sf;
 
 int main()
 {
-	VideoMode SCREEN_SIZE = sf::VideoMode::getDesktopMode();
+	sf::VideoMode SCREEN_SIZE = sf::VideoMode::getDesktopMode();
 	// создаем окно
-	RenderWindow window(VideoMode(SCREEN_SIZE), "");
+	sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE), "");
 
 	Oscillator osc1;
 

@@ -19,7 +19,7 @@ void Basic::draw_background(float pos_x, float pos_y, sf::RenderWindow &window)
 	window.draw(this->background);
 }
 
-void Basic::set_display_name( string name, int character_size_name, sf::Color display_name_color)
+void Basic::set_display_name(string name, int character_size_name, sf::Color display_name_color)
 {
 	font.loadFromMemory(&assets_fonts_Roboto_Regular_ttf, assets_fonts_Roboto_Regular_ttf_len);
 	sf::Text text;
@@ -33,9 +33,6 @@ void Basic::set_display_name( string name, int character_size_name, sf::Color di
 
 void Basic::draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window)
 {
-	const sf::Vector2f& bg_size = this->background.getSize();
-	pos_x_name = pos_x -  bg_size.x / 2;
-	pos_y_name = pos_y - bg_size.y * 3.4;
 	this->display_name.setPosition(pos_x, pos_y - 30.f);
 
 	window.draw(this->display_name);
