@@ -9,8 +9,8 @@ using namespace std;
 class Basic
 {
   private:
-     void draw_display_name(float pos_x, float pos_y);
-     void draw_background(float pos_x, float pos_y);
+    void draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window);
+    void draw_background(float pos_x, float pos_y, sf::RenderWindow &window);
        
   public:
 	float size_x;
@@ -28,7 +28,7 @@ class Basic
 	sf::Font font;
 	sf::Color display_name_color;
 	int character_size_name;
-	 sf::Text display_name; //используется функции set display_name
+	sf::Text display_name; //используется функции set display_name
 
 	//Основное тело(фон)
 	sf::Color background_color;

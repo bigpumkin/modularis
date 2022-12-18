@@ -5,8 +5,7 @@
 #include <cmath>
 #include <string>
 
-
-#include "include/module/osc.hpp"
+#include "module/osc.hpp"
 
 using namespace std;
 using namespace sf;
@@ -16,6 +15,8 @@ int main()
 	VideoMode SCREEN_SIZE = sf::VideoMode::getDesktopMode();
 	// создаем окно
 	RenderWindow window(VideoMode(SCREEN_SIZE), "");
+
+	Oscillator osc1;
 
 	// приложение будет работать, пока окно открыто
 	while (window.isOpen())
@@ -31,8 +32,8 @@ int main()
 
 		window.clear(sf::Color(3, 71, 105));
         
-        Oscillator osc1;
-        osc1.draw(78,56,window);
+        osc1.draw(78, 56, window);
+
 		window.display();
 	}
 
