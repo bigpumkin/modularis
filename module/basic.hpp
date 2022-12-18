@@ -23,7 +23,7 @@ class Basic
 
 	// Название модуля
 	sf::Font font;
-	sf::Text display_name; // используется в функции set display_name
+	sf::Text display_name; // используется в функции set_display_name
 
 	// Основное тело (фон)
 	sf::RectangleShape background;
