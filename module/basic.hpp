@@ -5,6 +5,8 @@
 #include <string>
 #include <vector>
 
+#include "socket.hpp"
+
 using namespace std;
 
 class Basic
@@ -18,7 +20,12 @@ class Basic
 	float size_y;
 	float pos_x;
 	float pos_y;
-
+    
+    vector <Socket> audio_in;
+    vector <Socket> audio_out;
+    vector <Socket> mod_in;
+    vector <Socket> mod_out;
+    
 	// Название модуля
 	sf::Font font;
 	sf::Text display_name; // используется в функции set_display_name
@@ -26,17 +33,9 @@ class Basic
 	// Основное тело (фон)
 	sf::RectangleShape background;
 
-	// Джеки и прочие надписи
-	sf::Color text_color;
-	sf::Color jack_color;
 	
 	sf::Text get_diplay_name();
 	
-	//Формат вывода с модулей
-	vector<vector<float>> audio_in;
-	vector<vector<float>> audio_out;
-	vector<vector<float>> mod_in;
-	vector<vector<float>> mod_out;
 	
     void set_background(float size_x, float size_y, sf::Color background_color, sf::Color outline_color);
 	
@@ -46,7 +45,9 @@ class Basic
 
 	sf::RectangleShape get_background();
 	
-	void set_out(int c_audio_in,  int c_audio_out, int c_mod_in, int c_mod_out);
+	void set_socket(size_t  num_audio_in, size_t  num_audio_out, size_t  num_mod_in, size_t  num_mod_out);	
+	void set_mono_all(vector<Socket>& sock);
+	void set_poly_all(vector<Socket>& sock);
 	
 };
 
@@ -102,10 +103,27 @@ void Basic::draw(float pos_x, float pos_y, sf::RenderWindow &window)
 
 sf::RectangleShape Basic::get_background() { return background; }
 
-void Basic::set_out(int c_audio_in,  int c_audio_out, int c_mod_in, int c_mod_out)
+void Basic::set_socket(size_t num_audio_in, size_t num_audio_out, size_t num_mod_in, size_t num_mod_out)
 {
-    audio_in.resize(c_audio_in);
-    audio_out.resize(c_audio_out);
-    mod_in.resize(c_mod_in);
-    mod_out.resize(c_mod_out);
+    this->audio_in.resize(num_audio_in);
+    this->audio_out.resize(num_audio_out);
+    this->mod_in.resize(num_mod_in);
+    this->mod_out.resize(num_mod_out);
 }
+
+void Basic::set_mono_all(vector<Socket>& sock)
+{
+    for(size_t i=0; i<sock.size(); i++)
+    {
+        sock[i].values.set_mono;
+    }
+}
+
+void Basic::set_poly_all(vector<Socket>& sock)
+{
+    for(size_t i=0; i<sock.size(); i++)
+    {
+        sock[i].values.set_poly;
+    }
+}
+
