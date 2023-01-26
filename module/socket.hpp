@@ -8,6 +8,8 @@ class Socket
     public:
        vector<float> values;
        
+       size_t idx;
+       
        void set_mono();
        void set_poly(); //16 голосов
        
@@ -26,5 +28,4 @@ void Socket::set_poly()
 {
     this->values.resize(16);
 }
-
 

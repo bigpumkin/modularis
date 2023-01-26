@@ -14,8 +14,19 @@ class Basic
   private:
     void draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window);
     void draw_background(float pos_x, float pos_y, sf::RenderWindow &window);
-       
+    
+    void set_mono_for_type(vector<Socket>& sock);
+    void set_poly_for_typee(vector<Socket>& sock);
+    
+    void set_socket_idx();
+	
   public:
+    enum name_module
+    {
+        osc,
+        phasor
+    };
+    
 	float size_x;
 	float size_y;
 	float pos_x;
@@ -26,6 +37,7 @@ class Basic
     vector <Socket> mod_in;
     vector <Socket> mod_out;
     
+    int num_channel;
 	// Название модуля
 	sf::Font font;
 	sf::Text display_name; // используется в функции set_display_name
@@ -46,8 +58,8 @@ class Basic
 	sf::RectangleShape get_background();
 	
 	void set_socket(size_t  num_audio_in, size_t  num_audio_out, size_t  num_mod_in, size_t  num_mod_out);	
-	void set_mono_all(vector<Socket>& sock);
-	void set_poly_all(vector<Socket>& sock);
+	
+	virtual void process(float sample_rate) = 0;
 	
 };
 
@@ -67,13 +79,6 @@ void Basic::set_background(float size_x, float size_y, sf::Color background_colo
 	background = rectangle;
 }
 
-void Basic::draw_background(float pos_x, float pos_y, sf::RenderWindow &window)
-{
-	this->background.setPosition(pos_x, pos_y);
-
-	window.draw(this->background);
-}
-
 void Basic::set_display_name(string name, int character_size_name, sf::Color display_name_color)
 {
 	font.loadFromMemory(&assets_fonts_Roboto_Regular_ttf, assets_fonts_Roboto_Regular_ttf_len);
@@ -86,6 +91,12 @@ void Basic::set_display_name(string name, int character_size_name, sf::Color dis
 	display_name = text;
 }
 
+void Basic::draw_background(float pos_x, float pos_y, sf::RenderWindow &window)
+{
+	this->background.setPosition(pos_x, pos_y);
+
+	window.draw(this->background);
+}
 void Basic::draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window)
 {
 	this->display_name.setPosition(pos_x, pos_y - 30.f);
@@ -93,13 +104,13 @@ void Basic::draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window
 	window.draw(this->display_name);
 }
 
-sf::Text Basic::get_diplay_name() { return display_name; }
-
 void Basic::draw(float pos_x, float pos_y, sf::RenderWindow &window)
 {
 	draw_background(pos_x, pos_y, window);
     draw_display_name(pos_x, pos_y, window);
 }
+
+sf::Text Basic::get_diplay_name() { return display_name; }
 
 sf::RectangleShape Basic::get_background() { return background; }
 
@@ -109,17 +120,30 @@ void Basic::set_socket(size_t num_audio_in, size_t num_audio_out, size_t num_mod
     this->audio_out.resize(num_audio_out);
     this->mod_in.resize(num_mod_in);
     this->mod_out.resize(num_mod_out);
+    
+    set_socket_idx(audio_in);
+    set_socket_idx(audio_out);
+    set_socket_idx(mod_in);
+    set_socket_idx(mod_out);
 }
 
-void Basic::set_mono_all(vector<Socket>& sock)
+void Basic::set_socket_idx(vector<Socket> sock)
 {
     for(size_t i=0; i<sock.size(); i++)
     {
-        sock[i].values.set_mono;
+        sock[i].idx = i;
     }
 }
 
-void Basic::set_poly_all(vector<Socket>& sock)
+void Basic::set_mono_for_type(vector<Socket>& sock)
+{
+    for(size_t i=0; i<sock.size(); i++)
+    {
+        sock[i].values.set_poly;
+    } 
+}
+
+void Basic::set_poly_for_type(vector<Socket>& sock)
 {
     for(size_t i=0; i<sock.size(); i++)
     {
@@ -127,3 +151,44 @@ void Basic::set_poly_all(vector<Socket>& sock)
     }
 }
 
+void Basic::set_mono_all()
+{
+    for(size_t i=0; i<this->num_audio_in; i++)
+    {        set_mono_for_type(audio_in[i]);
+    }
+    
+    for(size_t i=0; i<this->num_audio_out; i++)
+    {        set_mono_for_type(audio_out[i]);
+    }
+    
+        for(size_t i=0; i<this->num_mod_in; i++)
+    {        set_mono_for_type(mod_in[i]);
+    }
+
+    
+  for(size_t i=0; i<this-> num_mod_out; i++)
+    {
+        set_mono_for_type(mod_oyt[i])
+    }
+}
+
+void Basic::set_poly_all()
+{
+    for(size_t i=0; i<this->num_audio_in; i++)
+    {        set_poly_for_type(audio_in[i]);
+    }
+    
+    for(size_t i=0; i<this->num_audio_out; i++)
+    {        set_poly_for_type(audio_out[i]);
+    }
+    
+        for(size_t i=0; i<this->num_mod_in; i++)
+    {        set_poly_for_type(mod_in[i]);
+    }
+
+    
+  for(size_t i=0; i<this-> num_mod_out; i++)
+    {
+        set_poly_for_type(mod_oyt[i])
+    }
+}
