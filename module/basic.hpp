@@ -12,13 +12,14 @@ using namespace std;
 class Basic
 {
   private:
+  
     void draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window);
     void draw_background(float pos_x, float pos_y, sf::RenderWindow &window);
     
     void set_mono_for_type(vector<Socket>& sock);
-    void set_poly_for_typee(vector<Socket>& sock);
+    void set_poly_for_type(vector<Socket>& sock);
     
-    void set_socket_idx();
+    void set_socket_idx(vector<Socket> sock);
 	
   public:
     enum name_module
@@ -37,7 +38,10 @@ class Basic
     vector <Socket> mod_in;
     vector <Socket> mod_out;
     
-    int num_channel;
+    size_t num_audio_in;
+    size_t num_audio_out;
+    size_t num_mod_in;
+    size_t num_mod_out;
 	// Название модуля
 	sf::Font font;
 	sf::Text display_name; // используется в функции set_display_name
@@ -58,9 +62,9 @@ class Basic
 	sf::RectangleShape get_background();
 	
 	void set_socket(size_t  num_audio_in, size_t  num_audio_out, size_t  num_mod_in, size_t  num_mod_out);	
-	
-	virtual void process(float sample_rate) = 0;
-	
+	void set_mono_all();
+	void set_poly_all();
+		
 };
 
 
@@ -139,7 +143,7 @@ void Basic::set_mono_for_type(vector<Socket>& sock)
 {
     for(size_t i=0; i<sock.size(); i++)
     {
-        sock[i].values.set_poly;
+        sock[i].set_mono();
     } 
 }
 
@@ -147,48 +151,53 @@ void Basic::set_poly_for_type(vector<Socket>& sock)
 {
     for(size_t i=0; i<sock.size(); i++)
     {
-        sock[i].values.set_poly;
+        sock[i].set_poly();
     }
 }
 
 void Basic::set_mono_all()
 {
-    for(size_t i=0; i<this->num_audio_in; i++)
-    {        set_mono_for_type(audio_in[i]);
+    for(size_t i=0; i < this->num_audio_in; i++)
+    {        
+    	set_mono_for_type(this -> audio_in);
     }
     
-    for(size_t i=0; i<this->num_audio_out; i++)
-    {        set_mono_for_type(audio_out[i]);
+    for(size_t i=0; i < this->num_audio_out; i++)
+    {        
+    	set_mono_for_type(audio_out);
     }
     
-        for(size_t i=0; i<this->num_mod_in; i++)
-    {        set_mono_for_type(mod_in[i]);
+    for(size_t i=0; i < this->num_mod_in; i++)
+    {        
+    	set_mono_for_type(mod_in);
     }
 
-    
-  for(size_t i=0; i<this-> num_mod_out; i++)
+    for(size_t i=0; i < this-> num_mod_out; i++)
     {
-        set_mono_for_type(mod_oyt[i])
+        set_mono_for_type(mod_out);
     }
 }
 
 void Basic::set_poly_all()
 {
-    for(size_t i=0; i<this->num_audio_in; i++)
-    {        set_poly_for_type(audio_in[i]);
+    for(size_t i=0; i< this->num_audio_in; i++)
+    {        
+    	set_poly_for_type(this->audio_in);
     }
     
-    for(size_t i=0; i<this->num_audio_out; i++)
-    {        set_poly_for_type(audio_out[i]);
+    for(size_t i=0; i < this->num_audio_out; i++)
+    {        
+    	set_poly_for_type(audio_out);
     }
     
-        for(size_t i=0; i<this->num_mod_in; i++)
-    {        set_poly_for_type(mod_in[i]);
+    for(size_t i=0; i < this->num_mod_in; i++)
+    {        
+    	set_poly_for_type(mod_in);
     }
 
     
-  for(size_t i=0; i<this-> num_mod_out; i++)
+  for(size_t i=0; i < this-> num_mod_out; i++)
     {
-        set_poly_for_type(mod_oyt[i])
+        set_poly_for_type(mod_out);
     }
 }
