@@ -11,7 +11,7 @@ using namespace std;
 
 int main()
 {
-	sf::VideoMode SCREEN_SIZE = sf::VideoMode::getDesktopMode();;
+	sf::VideoMode SCREEN_SIZE = sf::VideoMode::getDesktopMode();
 	// создаем окно
 ;	sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE), "");
 
@@ -32,7 +32,7 @@ int main()
 		window.clear(sf::Color(3, 71, 105));
         
         osc1.draw(78, 56, window);
-
+		osc1.process();
 		window.display();
 	}
 

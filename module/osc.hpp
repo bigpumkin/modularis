@@ -11,7 +11,9 @@ class Oscillator : public Basic
   public:
 	Oscillator();
 	
-	void process(float note_freq, float mod_phase, float mod_freq, float sample_rate);
+	float note_freq, mod_phase, mod_freq;
+	
+	void process(float sample_rate);
 	
 };
 
@@ -23,14 +25,19 @@ class Oscillator : public Basic
 
 Oscillator::Oscillator()
 {
-	this->set_background(500, 800, sf::Color(8, 111, 161), sf::Color(0, 0, 0));
+	this->num_audio_out = 4;
+    this->num_mod_in = 5;
+    
+    this->set_socket();
+    this->set_mono_all();
+    
+	this->set_background(sf::Color(8, 111, 161), sf::Color(0, 0, 0));
 	this->set_display_name("osc", 68, sf::Color(255, 184, 0));
     
-    this->set_socket(0,4,5,0);
-    this->set_mono_all();
+   
 }
 
-void Oscillator::process(float note_freq, float mod_phase, float mod_freq, float sample_rate) 
+void Oscillator::process(float sample_rate = 44100) 
 {  
-    this->audio_out[0].values = get_phasor(note_freq,  mod_phase,sample_rate);
+    this->audio_out[0].values = get_phasor(this->note_freq,this->mod_phase, sample_rate);
 }
