@@ -21,17 +21,10 @@ class Basic
     void set_mono_for_type(vector<Socket>& sock);
     void set_poly_for_type(vector<Socket>& sock);
     
-    void set_socket_idx(vector<Socket> sock);
-    
     void set_size_module();
     
 	
   public:
-    enum name_module
-    {
-        osc,
-        phasor
-    };
     
 	float size_x;
 	float size_y;
@@ -182,18 +175,6 @@ void Basic::set_socket()
     this->mod_in.resize(this ->num_mod_in);
     this->mod_out.resize(this ->num_mod_out);
     
-    set_socket_idx(audio_in);
-    set_socket_idx(audio_out);
-    set_socket_idx(mod_in);
-    set_socket_idx(mod_out);
-}
-
-void Basic::set_socket_idx(vector<Socket> sock)
-{
-    for(size_t i=0; i<sock.size(); i++)
-    {
-        sock[i].idx = i;
-    }
 }
 
 void Basic::set_mono_for_type(vector<Socket>& sock)
