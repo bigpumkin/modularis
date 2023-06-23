@@ -6,6 +6,7 @@
 #include <string>
 
 #include "module/osc.hpp"
+#include "module/wire.hpp"
 
 using namespace std;
 
@@ -21,7 +22,7 @@ int main()
        modules[i]->process(44100);
     }
     
-    
+    set_wires();
     
 	// приложение будет работать, пока окно открыто
 	while (window.isOpen())
@@ -37,8 +38,8 @@ int main()
 
 		window.clear(sf::Color(3, 71, 105));
         
-        osc1.draw(78, 56, window);
-		osc1.process();
+        //osc1.draw(78, 56, window);
+		//osc1.process();
 		window.display();
 	}
 

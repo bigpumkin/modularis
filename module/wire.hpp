@@ -1,3 +1,6 @@
+#ifndef WIRE_H
+#define WIRE_H
+
 #include <string>
 #include <vector>
 #include "basic.hpp"
@@ -49,3 +52,4 @@ void set_wires()
 	}
 }
 
+#endif

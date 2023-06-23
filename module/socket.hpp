@@ -1,3 +1,6 @@
+#ifndef SOCKET_H
+#define SOCKET_H
+
 #include <vector>
 
 using namespace std;
@@ -26,4 +29,4 @@ void Socket::set_poly()
 {
     this->values.resize(16);
 }
-
+#endif

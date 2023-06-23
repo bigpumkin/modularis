@@ -1,3 +1,6 @@
+#ifndef BASIC_H
+#define BASIC_H
+
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp> 
@@ -72,7 +75,7 @@ class Basic
 		
 };
 
-
+#endif
 //======CPP======
 //#include "basic.hpp"
 #include "assets/fonts/Roboto-Regular.hpp"
