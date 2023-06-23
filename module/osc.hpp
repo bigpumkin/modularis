@@ -18,8 +18,6 @@ class Oscillator : public Basic
 };
 
 
-
-
 //======CPP=======
 //#include "osc.hpp"
 

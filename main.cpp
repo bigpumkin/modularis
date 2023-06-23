@@ -15,8 +15,14 @@ int main()
 	// создаем окно
 ;	sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE), "");
 
-	Oscillator osc1;
-
+    vector<unique_ptr<Basic>> modules;
+    for (size_t i = 0; i < modules.size(); i++)
+    {
+       modules[i]->process(44100);
+    }
+    
+    
+    
 	// приложение будет работать, пока окно открыто
 	while (window.isOpen())
 	{

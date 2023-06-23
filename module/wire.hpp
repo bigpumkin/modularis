@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include "basic.hpp"
+
 using namespace std;
 
 struct Wire
@@ -47,3 +48,4 @@ void set_wires()
 		wires[i].to.module->mod_in[socket_idx_to] = wires[i].from.module->mod_out[socket_idx_from];
 	}
 }
+
