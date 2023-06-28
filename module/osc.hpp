@@ -36,6 +36,6 @@ Oscillator::Oscillator()
 }
 
 void Oscillator::process(float sample_rate = 44100) 
-{  
-    this->audio_out[0].values = get_phasor(this->note_freq,this->mod_phase, sample_rate);
+{
+    this->audio_out[0].values = get_phasor(this->note_freq,this->mod_phase, sample_rate);
 }

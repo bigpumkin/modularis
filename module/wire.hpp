@@ -42,7 +42,7 @@ void bind_socket(Basic *module_from, Basic *module_to, size_t idx_from, size_t i
 
 void set_wires()
 {
-	for (size_t i = 0; i < link.size(); i++)
+	for (size_t i = 0; i < wires.size(); i++)
 	{
 		size_t socket_idx_from = wires[i].from.socket_idx;
 		size_t socket_idx_to = wires[i].to.socket_idx;

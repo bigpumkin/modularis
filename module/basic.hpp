@@ -75,7 +75,6 @@ class Basic
 		
 };
 
-#endif
 //======CPP======
 //#include "basic.hpp"
 #include "assets/fonts/Roboto-Regular.hpp"
@@ -242,3 +241,5 @@ void Basic::set_poly_all()
         set_poly_for_type(mod_out);
     }
 }
+
+#endif

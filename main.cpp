@@ -4,6 +4,7 @@
 #include <SFML/Window.hpp>
 #include <cmath>
 #include <string>
+#include <vector>
 
 #include "module/osc.hpp"
 #include "module/wire.hpp"
@@ -16,7 +17,14 @@ int main()
 	// создаем окно
 ;	sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE), "");
 
-    vector<unique_ptr<Basic>> modules;
+    Oscillator* osc = new Oscillator;
+Basic* basic = osc;
+    shared_ptr<Basic> basic_shared_ptr = make_shared<Basic>(basic);
+    
+    vector<shared_ptr<Basic>> modules;
+	
+	modules.push_back(basic_shared_ptr);
+    
     for (size_t i = 0; i < modules.size(); i++)
     {
        modules[i]->process(44100);
