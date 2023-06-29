@@ -23,16 +23,15 @@ class Oscillator : public Basic
 
 Oscillator::Oscillator()
 {
+	this->set_background(sf::Color(8, 111, 161), sf::Color(0, 0, 0));
+	this->set_display_name("osc", 68, sf::Color(255, 184, 0));
+	
 	this->num_audio_out = 4;
     this->num_mod_in = 5;
     
     this->set_socket();
     this->set_mono_all();
-    
-	this->set_background(sf::Color(8, 111, 161), sf::Color(0, 0, 0));
-	this->set_display_name("osc", 68, sf::Color(255, 184, 0));
-    
-   
+        
 }
 
 void Oscillator::process(float sample_rate = 44100) 

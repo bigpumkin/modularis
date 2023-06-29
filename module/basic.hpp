@@ -18,8 +18,8 @@ class Basic
   
     size_t max_num_socket;
    
-    void draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window);
-    void draw_background(float pos_x, float pos_y, sf::RenderWindow &window);
+    void draw_display_name(sf::RenderWindow &window);
+    void draw_background(sf::RenderWindow &window);
     
     void set_mono_for_type(vector<Socket>& sock);
     void set_poly_for_type(vector<Socket>& sock);
@@ -61,9 +61,9 @@ class Basic
 	
 	void set_display_name(string name, int character_size_name, sf::Color display_name_color);
 	
-	void draw_socket(float pos_x, float pos_y, sf::RenderWindow &window);
+	void draw_socket(sf::RenderWindow &window);
 	
-	void draw(float pos_x, float pos_y, sf::RenderWindow& window);
+	void draw(sf::RenderWindow& window);
 
 	sf::RectangleShape get_background();
 	
@@ -125,26 +125,26 @@ void Basic::set_size_module()
 	
 }
 
-void Basic::draw_background(float pos_x, float pos_y, sf::RenderWindow &window)
+void Basic::draw_background(sf::RenderWindow &window)
 {
-	this->background.setPosition(pos_x, pos_y);
+	this->background.setPosition(this->pos_x, this->pos_y);
 
 	window.draw(this->background);
 }
 
-void Basic::draw_display_name(float pos_x, float pos_y, sf::RenderWindow &window)
+void Basic::draw_display_name(sf::RenderWindow &window)
 {
-	this->display_name.setPosition(pos_x, pos_y - 30.f);
+	this->display_name.setPosition(this->pos_x, this->pos_y - 30.f);
 
 	window.draw(this->display_name);
 }
 
-void Basic::draw_socket(float pos_x, float pos_y, sf::RenderWindow &window)
+void Basic::draw_socket(sf::RenderWindow &window)
 {
 	vector<sf::CircleShape> socket_circle(this->max_num_socket);
 	
-    pos_x -= 25;
-	pos_y -= -80;
+    this->pos_x -= 25;
+	this->pos_y -= -80;
 	for (size_t i = 0; i < this->max_num_socket; i++)
 	{
 	    socket_circle[i].setRadius(30);
@@ -152,18 +152,18 @@ void Basic::draw_socket(float pos_x, float pos_y, sf::RenderWindow &window)
 		socket_circle[i].setOutlineThickness(5);
 	    socket_circle[i].setOutlineColor(sf::Color(0,0,0));
 	    
-		socket_circle[i].setPosition(pos_x, pos_y);
+		socket_circle[i].setPosition(this->pos_x, this->pos_y);
 		
-		pos_y += 150;
+		this->pos_y += 150;
 	
 		window.draw(socket_circle[i]);
 	}
 }
-void Basic::draw(float pos_x, float pos_y, sf::RenderWindow &window)
+void Basic::draw(sf::RenderWindow &window)
 {
-	draw_background(pos_x, pos_y, window);
-    draw_display_name(pos_x, pos_y, window);
-    draw_socket(pos_x, pos_y, window);
+	draw_background(this->pos_x, this->pos_y, window);
+    draw_display_name(this->pos_x, this->pos_y, window);
+    draw_socket(this->pos_x, this->pos_y, window);
 }
 
 sf::Text Basic::get_diplay_name() { return display_name; }
