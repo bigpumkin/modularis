@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "module/osc.hpp"
+#include "module/out.hpp"
 #include "module/wire.hpp"
 
 using namespace std;
@@ -15,23 +16,30 @@ int main()
 {
     sf::VideoMode SCREEN_SIZE = sf::VideoMode::getDesktopMode();
     // создаем окно
-    ;
+
     sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE), "");
 
     //добавление модуля
-    Oscillator *osc = new Oscillator;
-    std::shared_ptr<Basic> shared_ptr = std::make_shared<Oscillator>(*osc);
+    Oscillator *oscillator = new Oscillator;
+    std::shared_ptr<Basic> osc = std::make_shared<Oscillator>(*oscillator);
+    
+    Out *output = new out;
+    std::shared_ptr<Basic> out = std::make_shared<Out>(*output);
     std::vector<std::shared_ptr<Basic>> modules;
-    modules.push_back(shared_ptr);
+    modules.push_back(osc);
 
-    for (size_t i = 0; i < modules.size(); i++)
+   // modules[0]->set_position(56, 32);
+
+    for (size_t i = 0; i < 50000; i++)
     {
-        modules[i]->process(44100);
-        modules[i]->draw(window);
+        for (size_t i = 0; i < modules.size(); i++)
+        {
+            modules[i]->process(44100);
+            modules[i]->draw(window);
+        }
+
+        set_wires();
     }
-
-    set_wires();
-
     // приложение будет работать, пока окно открыто
     while (window.isOpen())
     {
