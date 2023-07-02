@@ -1,12 +1,21 @@
+#ifndef MISC_H
+#define MISC_H 
+
 #include <SFML/Audio.hpp>
 #include <vector>
 
 using namespace std;
 
-sf::Int16 float_to_int16(float num)
+vector<sf::Int16> float_to_int16(vector<float> num)
 {
-    sf::Int16 res = num * 32767;
-    return (int)res;
+    vector<sf::Int16> res;
+    
+    for(size_t i=0; i < num.size(); i++)
+    {
+        res.push_back(num[i] * 32767);
+    }
+    
+    return res;
 }
 
 vector<float> get_phasor(float freq,  float phase, float sample_rate)
@@ -25,3 +34,5 @@ vector<float> get_phasor(float freq,  float phase, float sample_rate)
     return out;
     
 }
+
+#endif
