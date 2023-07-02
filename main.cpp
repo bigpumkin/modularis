@@ -23,11 +23,11 @@ int main()
     Oscillator *oscillator = new Oscillator;
     std::shared_ptr<Basic> osc = std::make_shared<Oscillator>(*oscillator);
     
-    Out *output = new out;
+    Out *output = new Out;
     std::shared_ptr<Basic> out = std::make_shared<Out>(*output);
     std::vector<std::shared_ptr<Basic>> modules;
     modules.push_back(osc);
-
+    modules.push_back(out);
    // modules[0]->set_position(56, 32);
 
     for (size_t i = 0; i < 50000; i++)

@@ -3,16 +3,16 @@
 #include <SFML/System.hpp>
  
 #include "basic.hpp"
-#include "audio stream.hpp"
+#include "audio_stream.hpp"
 
 class Out : public Basic
 {
-  private:
     
   public:
 	Out();
 	vector<float> buf;
 	void process(float sample_rate);
+	sf::SoundBuffer buffer;
 	
 };
 
@@ -29,7 +29,6 @@ Out::Out()
     this->set_socket();
     this->set_mono_all();
     
-    sf::SoundBuffer buffer;
 }
 
 void Out::process(float sample_rate = 44100) 
@@ -39,7 +38,7 @@ void Out::process(float sample_rate = 44100)
     
     float_to_int16(buf);
     
-    buffer.loadFromSamples(buf, 50000, 1, 44100);
+    this->buffer.loadFromSamples(buf, 50000, 1, 44100);
     
 }
 
