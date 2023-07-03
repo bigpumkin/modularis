@@ -15,7 +15,7 @@ class Oscillator : public Basic
 	
 	vector<float> phase;
 	
-	void process();
+	void process(float sample_rate);
 	
 };
 
@@ -36,7 +36,7 @@ Oscillator::Oscillator()
         
 }
 
-void Oscillator::process() 
+void Oscillator::process(float sample_rate) 
 {
     phase = get_phasor(this->note_freq,this->mod_phase);
     

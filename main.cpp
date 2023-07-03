@@ -31,22 +31,19 @@ int main()
     std::vector<std::shared_ptr<Basic>> modules;
     modules.push_back(osc);
     modules.push_back(out);
-   // modules[0]->set_position(56, 32);
+   modules[0]->set_position(56, 32);
 
     for (size_t i = 0; i < 50000; i++)
     {
         for (size_t i = 0; i < modules.size(); i++)
         {
-            //modules[i]->process(44100);
+            modules[i]->process(44100);
         }
 
         set_wires();
     }
     
-    for(size_t i=0;;i++)
-    {
-        modules[i]->draw(window);
-    }
+    
     // приложение будет работать, пока окно открыто
     while (window.isOpen())
     {
@@ -60,7 +57,12 @@ int main()
         }
 
         window.clear(sf::Color(3, 71, 105));
-      
+        
+        for(size_t i=0; i < modules.size();i++)
+    {
+        modules[i]->draw(window);
+    }
+    
         window.display();
         
     }
