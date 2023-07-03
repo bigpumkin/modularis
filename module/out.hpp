@@ -10,6 +10,7 @@ class Out : public Basic
   private:
     vector<float> buf_float;
 	vector<sf::Int16> buf_int16;
+	
 	float sum_LR;
 	
   public:
@@ -25,6 +26,9 @@ class Out : public Basic
 
 Out::Out()
 {
+	buf_float.push_back(0);
+	buf_int16.push_back(0);
+	
 	this->set_background(sf::Color(8, 111, 161), sf::Color(0, 0, 0));
 	this->set_display_name("out", 68, sf::Color(255, 184, 0));
 
