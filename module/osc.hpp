@@ -38,7 +38,7 @@ Oscillator::Oscillator()
 
 void Oscillator::process() 
 {
-    phase[0] = get_phasor(this->note_freq,this->mod_phase);
+    phase = get_phasor(this->note_freq,this->mod_phase);
     
     this->audio_out[0].values[0] = phase[0]; 
 }
