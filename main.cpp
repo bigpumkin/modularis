@@ -1,4 +1,4 @@
-#include <SFML/Audio.hpp>
+'#include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
@@ -15,9 +15,12 @@ using namespace std;
 int main()
 {
     sf::VideoMode SCREEN_SIZE = sf::VideoMode::getDesktopMode();
+    
+    
     // создаем окно
 
     sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE), "");
+    window.sf::Window::setVerticalSyncEnabled(1);
 
     //добавление модуля
     Oscillator *oscillator = new Oscillator;
@@ -34,11 +37,15 @@ int main()
     {
         for (size_t i = 0; i < modules.size(); i++)
         {
-            modules[i]->process(44100);
-            modules[i]->draw(window);
+            //modules[i]->process(44100);
         }
 
         set_wires();
+    }
+    
+    for(size_t i=0;;i++)
+    {
+        modules[i]->draw(window);
     }
     // приложение будет работать, пока окно открыто
     while (window.isOpen())
@@ -53,10 +60,9 @@ int main()
         }
 
         window.clear(sf::Color(3, 71, 105));
-
-        //osc1.draw(78, 56, window);
-        //osc1.process();
+      
         window.display();
+        
     }
 
     return 0;

@@ -7,10 +7,14 @@
 
 class Out : public Basic
 {
-    
+  private:
+    vector<float> buf_float;
+	vector<sf::Int16> buf_int16;
+	float sum_LR;
+	
   public:
 	Out();
-	vector<float> buf;
+	
 	void process(float sample_rate);
 	sf::SoundBuffer buffer;
 	
@@ -33,12 +37,12 @@ Out::Out()
 
 void Out::process(float sample_rate = 44100) 
 {
-
-    this->buf[0].push_back(this->audio_in[0] + this->audio_in[1]);
+    this->sum_LR = this->audio_in[0].values[0] + this->audio_in[1].values[0];
+    this->buf_float[0] = this->sum_LR;
     
-    float_to_int16(buf);
+    buf_int16 = float_to_int16(buf_float);
     
-    this->buffer.loadFromSamples(buf, 50000, 1, 44100);
+    this->buffer.loadFromSamples(buf_int16.data(), 50000, 1, 44100);
     
 }
 

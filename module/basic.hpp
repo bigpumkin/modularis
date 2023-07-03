@@ -68,7 +68,7 @@ class Basic
 
     void set_position(float x, float y);
 
-    virtual void process(float sample_rate) = 0;
+    virtual void process(float  sample_rate = 44100) = 0;
 };
 
 //======CPP======

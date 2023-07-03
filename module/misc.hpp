@@ -18,7 +18,7 @@ vector<sf::Int16> float_to_int16(vector<float> num)
     return res;
 }
 
-vector<float> get_phasor(float freq,  float phase, float sample_rate)
+vector<float> get_phasor(float freq,  float phase, float sample_rate = 44100)
 {
     vector<float> out;
     float sample_time = 1.f/sample_rate;
