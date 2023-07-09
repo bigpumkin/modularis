@@ -46,7 +46,7 @@ void Out::process(float sample_rate = 44100)
     
     buf_int16 = float_to_int16(buf_float);
     
-    this->buffer.loadFromSamples(buf_int16.data(), 50000, 1, 44100);
-    
+    data.samples = buf_int16.data();
+        
 }
 

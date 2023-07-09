@@ -9,6 +9,7 @@
 #include "module/osc.hpp"
 #include "module/out.hpp"
 #include "module/wire.hpp"
+#include "module/audio_stream.hpp"
 
 using namespace std;
 
@@ -21,6 +22,8 @@ int main()
 
     sf::RenderWindow window(sf::VideoMode(SCREEN_SIZE), "");
     window.sf::Window::setVerticalSyncEnabled(1);
+    
+    Audio_out audio_out;
 
     //добавление модуля
     Oscillator *oscillator = new Oscillator;
